@@ -90,6 +90,7 @@ public class LoginFragment extends Fragment {
 
                 // Basic empty field checker
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+                    Toast.makeText(getContext(), "Logging in...", Toast.LENGTH_LONG).show();
                     dataPasser.OnLoginDataPasser(email, password);
                 } else {
                     Toast.makeText(getContext(), "Please fill all fields!", Toast.LENGTH_SHORT).show();

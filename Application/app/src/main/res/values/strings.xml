@@ -20,4 +20,12 @@
     <string name="email">Email</string>
     <string name="no_account">Don\'t have an account? Click here</string>
     <string name="yes_account">Already have an account? Click here</string>
+
+    <!-- Menu -->
+    <string name="new_journey">New Journey</string>
+    <string name="my_journeys">My Journeys</string>
+    <string name="all_journeys">All Journeys</string>
+    <string name="website">Website</string>
+
+    <string name="logout">Log out</string>
 </resources>

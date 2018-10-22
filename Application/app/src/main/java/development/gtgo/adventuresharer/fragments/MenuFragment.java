@@ -28,19 +28,12 @@ public class MenuFragment extends Fragment{
 
         view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        Button logoutButton = view.findViewById(R.id.buttonLogout);
-        Button mapsButton = view.findViewById(R.id.buttonNewRoute);
+        Button mapsButton = view.findViewById(R.id.button__new_route);
         Button myJourneysButton = view.findViewById(R.id.button_my_journeys);
         Button allJourneysButton = view.findViewById(R.id.button_all_journeys);
         Button websiteButton = view.findViewById(R.id.button_website);
+        Button logoutButton = view.findViewById(R.id.button_logout);
 
-        // Logs user out
-        logoutButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                FirebaseAuth.getInstance().signOut();
-            }
-        });
 
         // Opens map tracking functionality
         mapsButton.setOnClickListener(new View.OnClickListener(){
@@ -64,6 +57,7 @@ public class MenuFragment extends Fragment{
             }
         });
 
+        // Opens view of every users saved Routes
         allJourneysButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,12 +68,21 @@ public class MenuFragment extends Fragment{
             }
         });
 
+        // Links the user to the GOt to Get Out Website
         websiteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Uri uriUrl = Uri.parse("https://gottogetout.com/");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
                 startActivity(intent);
+            }
+        });
+
+        // Logs user out
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                FirebaseAuth.getInstance().signOut();
             }
         });
 

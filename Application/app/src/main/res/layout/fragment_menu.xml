@@ -17,23 +17,27 @@
             android:orientation="vertical"
             android:gravity="center">
 
+            <!-- Logo space-->
             <ImageView
                 android:contentDescription="@string/login_background"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:src="@drawable/logo_small"/>
 
+            <!-- Allows the user to create a new route -->
             <Button
-                android:id="@+id/buttonNewRoute"
+                android:id="@+id/button_new_route"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="New Journey"
+                android:text="@string/new_journey"
                 android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
+                android:background="@drawable/rounded_button"
+                android:textAllCaps="false"/>
 
+            <!-- Displays the current users routes -->
             <Button
                 android:id="@+id/button_my_journeys"
                 android:layout_width="match_parent"
@@ -41,10 +45,12 @@
                 android:minHeight="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="My Journeys"
+                android:text="@string/my_journeys"
                 android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
+                android:background="@drawable/rounded_button"
+                android:textAllCaps="false"/>
 
+            <!-- Displays every users routes -->
             <Button
                 android:id="@+id/button_all_journeys"
                 android:layout_width="match_parent"
@@ -52,10 +58,12 @@
                 android:minHeight="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="All Journeys"
+                android:text="@string/all_journeys"
                 android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
+                android:background="@drawable/rounded_button"
+                android:textAllCaps="false"/>
 
+            <!-- Button that takes user to the website -->
             <Button
                 android:id="@+id/button_website"
                 android:layout_width="match_parent"
@@ -63,9 +71,10 @@
                 android:minHeight="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Website"
+                android:text="@string/website"
                 android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
+                android:background="@drawable/rounded_button"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
 
@@ -73,25 +82,23 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            android:gravity="end">
 
-            <LinearLayout
+            <!-- Log out button -->
+            <Button
+                android:id="@+id/button_logout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:background="@drawable/rounded_button_red"
+                android:textColor="@android:color/white"
+                android:text="@string/logout"
+                android:textAllCaps="false"/>
 
-                <Button
-                    android:id="@+id/buttonLogout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minHeight="40dp"
-                    android:background="@drawable/rounded_button_red"
-                    android:textColor="@android:color/white"
-                    android:text="Logout" />
-
-            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 
