@@ -44,6 +44,8 @@ https://github.com/AdventureSharer/AS_application
 
 
 #### 4. Google Maps API
+[Alternate, more useful walkthrough](https://developers.google.com/maps/documentation/android/start#get-key)
+
 1. Using the same account as the **Firebase**, go to the [Google Cloud Platform console](https://console.cloud.google.com/).
 2. On the panel located on the left, hover you mouse other the **APIs & Services** panel and select **Dashboard**
 3. From here, Near the top, to the right of the **Dashboard** title, select the **Enable APIs and Services** option
@@ -55,6 +57,7 @@ https://github.com/AdventureSharer/AS_application
 9. Here, copy the code down somewhere safe - it should start with ```AIza```
 10. While here, navigate your way down to the **Application Restrictions** area, and select **Android apps**
 11. With your copied code, paste it into the "google_maps_key" string object located in the file
+   
     ```
     Application > app > src > debug > res > values > google_maps_api.xml
     ```
