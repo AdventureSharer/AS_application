@@ -9,15 +9,16 @@
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <!-- Image of the POI, only single image for now -->
         <ImageView
             android:id="@+id/infoWindowImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:contentDescription="hello"
-            android:background="@color/colorPrimaryDark"/>
+            android:contentDescription="@string/image_display"
+            android:src="@color/colorPrimaryDark"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,9 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:paddingTop="10dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
+                android:padding="5dp"
                 tools:text="POI Title" />
 
              <!-- Snippet of information -->
@@ -40,9 +39,7 @@
                 android:id="@+id/infoWindowSnippet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
+                android:padding="5dp"
                 tools:text="This is where the users small snippet of information will go" />
 
         </LinearLayout>
