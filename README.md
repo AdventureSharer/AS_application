@@ -4,8 +4,6 @@ This is an application we have developed for a client for our final year project
 by going for a walk while the application tracks the journey for them. Along the way the user is able to mark out points of interest for other users to stop and look at. Users will also 
 be able to view a list of thier own walks, as well as a list of all the other walks other user have uploaded along the way. This application is still heavily under development. 
 
-_README.md still requires updates_
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -15,10 +13,9 @@ These instructions will get you a copy of the project up and running on your loc
 You will need:
 1. Firebase account
 2. Google Maps API Key
+3. SHA Code
 
 ### Installing
-
-#### Find you SHA Code!
 
 #### 1. Clone the project
  Clone the repository to your computer via Android Studio. To do this, navigate to 'File > New > Project from Verison Control > Git' and in the the 'Git Repository URL' field, enter:
@@ -62,11 +59,10 @@ https://github.com/AdventureSharer/AS_application
     Application > app > src > debug > res > values > google_maps_api.xml
     ```
 
-**INFORMATION TO BE ADDED**
-
 ## Built With
 
 * [Firebase](https://firebase.google.com/) - Authentication, Realtime Database, and Storage
+* [Google Maps API](https://cloud.google.com/maps-platform/)
 
 ## License
 
