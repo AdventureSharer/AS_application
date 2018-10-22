@@ -12,5 +12,9 @@
     <string name="button_image">Button Image</string>
     <string name="logo_small">Small Logo</string>
 
-
+    <!-- Login and Sign Up Page Strings -->
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="no_account">Don\'t have an account? Click here</string>
 </resources>

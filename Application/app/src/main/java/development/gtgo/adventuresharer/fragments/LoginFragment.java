@@ -26,25 +26,23 @@ public class LoginFragment extends Fragment {
     private TextInputLayout emailTIL;
     private EditText passwordField;
     private TextInputLayout passwordTIL;
-    private Button loginButton;
-    private Button signupButton;
 
     private String email;
     private String password;
 
-    private View view;
-
-    // Used to send data to the main Activity
+    /** This interface is used to send the Log In credentials to the MainActivity
+     *  to handle the authentication and logging in process
+     */
     OnLoginDataPass dataPasser;
-
     public interface OnLoginDataPass {
-        void OnLoginDataPass(String email, String password);
+        void OnLoginDataPasser(String email, String password);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
+        // Attaches the data passer for the MainActivity to be able to access it
         try{
             dataPasser = (OnLoginDataPass) context;
         } catch (Exception ex) {
@@ -57,46 +55,61 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_login, container, false);
-
+        // Creates View object based on the fragment_login layout file
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         // Instantiates different fields
         // Uses view object to locate ID
-        emailField = view.findViewById(R.id.loginEmail);
-        passwordField = view.findViewById(R.id.loginPassword);
-        loginButton = view.findViewById(R.id.buttonLogin);
-        signupButton = view.findViewById(R.id.buttonSignupLink);
-
-        emailTIL = view.findViewById(R.id.loginEmailTIL);
-        passwordTIL = view.findViewById(R.id.loginPasswordTIL);
+        emailField = view.findViewById(R.id.login_email_field);
+        passwordField = view.findViewById(R.id.login_password);
+        emailTIL = view.findViewById(R.id.login_email_til);
+        passwordTIL = view.findViewById(R.id.login_password_til);
 
 
         // Sends data grabbed from the login fields to the Main Activity
+        final Button loginButton = view.findViewById(R.id.button_login);
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                password = passwordField.getText().toString();
+
                 email = emailField.getText().toString();
+                password = passwordField.getText().toString();
+
+                // Basic empty field checker that changed the TIL error section
+                if(TextUtils.isEmpty(email)) {
+                    emailTIL.setError("Please enter your email!");
+                } else {
+                    emailTIL.setError(null);
+                }
+
+                if(TextUtils.isEmpty(password)){
+                    passwordTIL.setError("Please enter your password!");
+                } else {
+                    passwordTIL.setError(null);
+                }
 
                 // Basic empty field checker
-                if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
-                    dataPasser.OnLoginDataPass(email, password);
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+                    dataPasser.OnLoginDataPasser(email, password);
                 } else {
-                    Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please fill all fields!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         // Takes user to the sign up fragment
-        signupButton.setOnClickListener(new View.OnClickListener() {
+        final Button signUpButton = view.findViewById(R.id.button_sign_up_link);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Fragment frag = new SignupFragment();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction()
-                        .replace(R.id.content_test, frag)
-                        .commit();
+                if(manager != null) {
+                    manager.beginTransaction()
+                            .replace(R.id.content_test, frag)
+                            .commit();
+                }
             }
         });
 

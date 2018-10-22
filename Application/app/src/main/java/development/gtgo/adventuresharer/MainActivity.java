@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
 
 
     @Override
-    public void OnLoginDataPass(String email, String password){
+    public void OnLoginDataPasser(String email, String password){
 
         loginEmail = email;
         loginPassword = password;

@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Colours and images are temporary and will be changed in the future -->
-
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -23,80 +20,76 @@
             android:background="@android:color/transparent"
             android:gravity="center">
 
-            <!-- BRAND LOGO -->
+            <!-- Brand Logo -->
             <ImageView
                 android:contentDescription="@string/login_background"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:src="@drawable/logo_small" />
 
-            <!-- EMAIL FIELD: possibly add icon -->
+            <!-- Email field -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="280dp"
-                android:id="@+id/loginEmailTIL"
+                android:id="@+id/login_email_til"
                 android:layout_height="wrap_content"
                 android:textColorHint="@android:color/white">
-
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/loginEmail"
+                    android:id="@+id/login_email_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:textSize="16sp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/white"
                     android:inputType="textEmailAddress" />
-
             </android.support.design.widget.TextInputLayout>
 
-            <!-- PASSWORD FIELD: possibly add icon -->
+            <!-- Password field -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="280dp"
-                android:id="@+id/loginPasswordTIL"
+                android:id="@+id/login_password_til"
                 android:layout_height="wrap_content"
                 android:textColorHint="@android:color/white">
-
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/loginPassword"
+                    android:id="@+id/login_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:textSize="16sp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/white"
                     android:inputType="textPassword" />
-
             </android.support.design.widget.TextInputLayout>
 
-            <!-- LOGIN BUTTON -->
+            <!-- Login button -->
             <Button
-                android:id="@+id/buttonLogin"
+                android:id="@+id/button_login"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:minHeight="40dp"
                 android:background="@drawable/rounded_button"
-                android:text="LOGIN"
+                android:text="@string/login"
                 android:textSize="14sp"
                 android:textColor="@color/textPrimary"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="2dp"/>
 
-            <!-- SIGN UP BUTTON -->
+            <!-- Sign up button -->
             <Button
-                android:id="@+id/buttonSignupLink"
+                android:id="@+id/button_sign_up_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:text="Don't have an account? Click here"
+                android:text="@string/no_account"
                 />
 
 
