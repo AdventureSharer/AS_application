@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Adventure Sharer</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="paused">Paused</string>
+    <string name="tracking">Tracking</string>
+
+    <string name="distance_travelled">Distance Travelled (m):</string>
+
+    <!-- Content Description -->
+    <string name="login_background">Background Image</string>
+    <string name="image_display">Image Display</string>
+    <string name="button_image">Button Image</string>
+    <string name="logo_small">Small Logo</string>
+
+
+</resources>
