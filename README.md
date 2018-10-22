@@ -17,17 +17,24 @@ You will need:
 2. Google Maps API Key
 
 ### Installing
+
+#### Find you SHA Code!
+
 #### 1. Clone the project
  Clone the repository to your computer via Android Studio. To do this, navigate to 'File > New > Project from Verison Control > Git' and in the the 'Git Repository URL' field, enter:
 
 ```
-https://github.com/calebtoi/RnD-Application
+https://github.com/AdventureSharer/AS_application
 ```
 
 #### 2. Create a Firebase project
 1. Go to the [Firebase Console](https://console.firebase.google.com/) and create a project from here. If you already have a project you want to use, skip to **Firebase Application Setup** 
 2. Select the **Authentication** panel and navigate to the **Sign in Method** tab.
 3. Click **Email/Password** enable it by selecting the **Enable** switch, this select **Save**.
+4. Select the **Database** panel (underneath the **Authentication** panel)
+5. Navigate to the **Create a Database** button and select it.
+6. Select the **Storage** panel (underneath the **Database** panel)
+7. Navigate to the **Get Start** button and accept the prompts
 
 
 #### 3. Firebase Application Setup
@@ -37,12 +44,26 @@ https://github.com/calebtoi/RnD-Application
 
 
 #### 4. Google Maps API
+1. Using the same account as the **Firebase**, go to the [Google Cloud Platform console](https://console.cloud.google.com/).
+2. On the panel located on the left, hover you mouse other the **APIs & Services** panel and select **Dashboard**
+3. From here, Near the top, to the right of the **Dashboard** title, select the **Enable APIs and Services** option
+4. In the search field provided, search for **Maps SDK for Android** and select it
+5. Select the **Enable** button located to the right of the logo, and navigate back to **APIs & Services Dashboard**
+6. Select the **Credentials** option located on the left panel, underneath **Dashboard** and ** Library**
+7. Select the **Create Credentials** dropdown and select the **API Key** option
+8. When the prompt comes up, select the **Restrict Key** option
+9. Here, copy the code down somewhere safe - it should start with ```AIza```
+10. While here, navigate your way down to the **Application Restrictions** area, and select **Android apps**
+11. With your copied code, paste it into the "google_maps_key" string object located in the file
+    ```
+    Application > app > src > debug > res > values > google_maps_api.xml
+    ```
 
 **INFORMATION TO BE ADDED**
 
 ## Built With
 
-* [Firebase](https://firebase.google.com/) - Authentication and Realtime Database
+* [Firebase](https://firebase.google.com/) - Authentication, Realtime Database, and Storage
 
 ## License
 
