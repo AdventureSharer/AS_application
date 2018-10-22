@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- TODO: implement error handlers -->
-
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="development.gtgo.adventuresharer.fragments.SignupFragment">
+    tools:context="development.gtgo.adventuresharer.fragments.SignUpFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,38 +20,14 @@
             android:background="@android:color/transparent"
             android:gravity="center">
 
-            <!-- Users Username
-             TODO: limit to specific number of character -->
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/white">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/signupUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:height="56dp"
-                    android:ems="10"
-                    android:textSize="16sp"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:hint="Username"
-                    android:textColor="@android:color/white"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textShortMessage"
-                    />
-
-            </android.support.design.widget.TextInputLayout>
-
             <!-- Users Email -->
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/sign_up_email_til"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:textColorHint="@android:color/white">
-
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/signupEmail"
+                    android:id="@+id/sign_up_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:height="56dp"
@@ -62,22 +35,20 @@
                     android:textSize="16sp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/white"
-                    android:inputType="textEmailAddress"
-                    />
-
+                    android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 
-            <!-- Users Passowrd -->
+            <!-- Users password -->
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/sign_up_password_til"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:textColorHint="@android:color/white">
-
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/signupPassword"
+                    android:id="@+id/sign_up_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:height="56dp"
@@ -85,22 +56,20 @@
                     android:textSize="16sp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/white"
-                    android:inputType="textPassword"
-                    />
-
+                    android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Users password repeated to confirm if it is correct -->
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/sign_up_confirm_password_til"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:textColorHint="@android:color/white">
-
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/signupConfirmPassword"
+                    android:id="@+id/sign_up_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:height="56dp"
@@ -108,43 +77,37 @@
                     android:textSize="16sp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirm_password"
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/white"
-                    android:inputType="textPassword"
-                    />
-
+                    android:inputType="textPassword"/>
             </android.support.design.widget.TextInputLayout>
 
-            <!-- SIGN UP BUTTON -->
+            <!-- Sign up button -->
             <Button
-                android:id="@+id/buttonSignup"
+                android:id="@+id/button_sign_up"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:minHeight="40dp"
                 android:background="@drawable/rounded_button"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:textSize="14sp"
                 android:textColor="@color/textPrimary"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="2dp"/>
 
-            <!-- LOG IN LINK BUTTON -->
+            <!-- Login link button -->
             <Button
-                android:id="@+id/buttonLoginLink"
+                android:id="@+id/button_login_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:text="Already have an account? Log in here!"
-                />
-
-
+                android:text="@string/yes_account"/>
 
         </LinearLayout>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

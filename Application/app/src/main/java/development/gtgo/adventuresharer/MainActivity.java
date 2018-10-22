@@ -1,6 +1,5 @@
 package development.gtgo.adventuresharer;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,9 +16,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import development.gtgo.adventuresharer.fragments.MenuFragment;
 import development.gtgo.adventuresharer.fragments.LoginFragment;
-import development.gtgo.adventuresharer.fragments.SignupFragment;
+import development.gtgo.adventuresharer.fragments.SignUpFragment;
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.OnLoginDataPass, SignupFragment.OnSignUpDataPass {
+public class MainActivity extends AppCompatActivity implements LoginFragment.OnLoginDataPass, SignUpFragment.OnSignUpDataPass {
 
     String loginEmail;
     String loginPassword;
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
         loginEmail = email;
         loginPassword = password;
 
-        if(loginEmail != null || loginPassword != null){
+        if(loginEmail != null && loginPassword != null){
 
             mAuth.signInWithEmailAndPassword(loginEmail, loginPassword)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -65,12 +64,11 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
     }
 
     @Override
-    public void OnSignUpDataPass(String username, String email, String password){
-        signupUsername = username;
+    public void OnSignUpDataPasser(String email, String password){
         signupEmail = email;
         signupPassword = password;
 
-        if(signupUsername != null && signupEmail != null && signupPassword != null){
+        if(signupEmail != null && signupPassword != null){
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(MainActivity.this, "Authentication failed.",
+                                Toast.makeText(MainActivity.this, "Account creation failed! Please try again..",
                                         Toast.LENGTH_SHORT).show();
                             }
 

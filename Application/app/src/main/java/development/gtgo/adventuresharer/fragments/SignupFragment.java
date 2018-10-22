@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
@@ -16,34 +17,34 @@ import android.widget.Toast;
 
 import development.gtgo.adventuresharer.R;
 
-public class SignupFragment extends Fragment {
+public class SignUpFragment extends Fragment {
 
-    private EditText signupUsername;
-    private EditText signupEmail;
-    private EditText signupPassword;
-    private EditText signupPasswordConfirm;
-    private Button signupButton;
-    private Button loginLinkButton;
+    private EditText signUpEmail;
+    private EditText signUpPassword;
+    private EditText signUpPasswordConfirm;
+    private TextInputLayout emailTIL;
+    private TextInputLayout passwordTIL;
+    private TextInputLayout confirmPasswordTIL;
 
-    private String username;
     private String email;
     private String password;
     private String confirmPassword;
 
-    private View view;
-
+    /** This interface is used to send the Sign Up credentials to the MainActivity
+     *  to handle the authentication and signing up process
+     */
     OnSignUpDataPass dataPasser;
-
     public interface OnSignUpDataPass {
-        void OnSignUpDataPass(String username, String email, String password);
+        void OnSignUpDataPasser(String email, String password);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
+        // Attaches the data passer for the MainActivity to be able to access it
         try{
-            dataPasser = (SignupFragment.OnSignUpDataPass) context;
+            dataPasser = (SignUpFragment.OnSignUpDataPass) context;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -51,55 +52,71 @@ public class SignupFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_signup, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         // Instantiates different fields
         // Uses view object to locate ID
-        signupUsername = view.findViewById(R.id.signupUsername);
-        signupEmail = view.findViewById(R.id.signupEmail);
-        signupPassword = view.findViewById(R.id.signupPassword);
-        signupPasswordConfirm = view.findViewById(R.id.signupConfirmPassword);
-        signupButton = view.findViewById(R.id.buttonSignup);
-        loginLinkButton = view.findViewById(R.id.buttonLoginLink);
-
-        // TODO: Check if fields are empty
-
-        // TODO: Check if password matches
+        signUpEmail = view.findViewById(R.id.sign_up_email);
+        signUpPassword = view.findViewById(R.id.sign_up_password);
+        signUpPasswordConfirm = view.findViewById(R.id.sign_up_confirm_password);
+        emailTIL = view.findViewById(R.id.sign_up_email_til);
+        passwordTIL = view.findViewById(R.id.sign_up_password_til);
+        confirmPasswordTIL = view.findViewById(R.id.sign_up_confirm_password_til);
 
 
-        /*
-         * Send information to Activity
-         *  Create profile
-         *  Log user in
-         */
-        signupButton.setOnClickListener(new View.OnClickListener(){
+        final Button signUpButton = view.findViewById(R.id.button_sign_up);
+        signUpButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
                 // Gather fields
-                username = signupUsername.getText().toString();
-                email = signupEmail.getText().toString();
-                password = signupPassword.getText().toString();
-                confirmPassword = signupPasswordConfirm.getText().toString();
+                email = signUpEmail.getText().toString();
+                password = signUpPassword.getText().toString();
+                confirmPassword = signUpPasswordConfirm.getText().toString();
 
-                dataPasser.OnSignUpDataPass(username, email, password);
+                // Basic empty field checker that changed the TIL error section
+                if(TextUtils.isEmpty(email)) {
+                    emailTIL.setError("Please enter your email!");
+                } else {
+                    emailTIL.setError(null);
+                }
+                if(TextUtils.isEmpty(password)){
+                    passwordTIL.setError("Please enter your password!");
+                } else {
+                    passwordTIL.setError(null);
+                }
+                if(TextUtils.isEmpty(confirmPassword)){
+                    confirmPasswordTIL.setError("Please enter your password!");
+                } else {
+                    confirmPasswordTIL.setError(null);
+                }
+
+                // Basic empty field checker
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(confirmPassword)){
+                    if(password.equals(confirmPassword)){
+                        dataPasser.OnSignUpDataPasser(email, password);
+                    } else {
+                        Toast.makeText(getContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
         // Takes user back to login page
+        final Button loginLinkButton = view.findViewById(R.id.button_login_link);
         loginLinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment frag = new LoginFragment();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction()
-                        .replace(R.id.content_test, frag)
-                        .addToBackStack(null)
-                        .commit();
+                if(manager != null) {
+                    manager.beginTransaction()
+                            .replace(R.id.content_test, frag)
+                            .addToBackStack(null)
+                            .commit();
+                }
             }
         });
-
-        // TODO: back press takes user back to login screen
 
         return view;
     }

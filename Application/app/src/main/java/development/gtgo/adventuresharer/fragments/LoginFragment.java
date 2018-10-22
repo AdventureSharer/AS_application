@@ -23,8 +23,8 @@ public class LoginFragment extends Fragment {
 
     // Fields used in the logging in sequence
     private EditText emailField;
-    private TextInputLayout emailTIL;
     private EditText passwordField;
+    private TextInputLayout emailTIL;
     private TextInputLayout passwordTIL;
 
     private String email;
@@ -103,7 +103,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment frag = new SignupFragment();
+                Fragment frag = new SignUpFragment();
                 FragmentManager manager = getFragmentManager();
                 if(manager != null) {
                     manager.beginTransaction()

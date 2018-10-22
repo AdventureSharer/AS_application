@@ -14,7 +14,10 @@
 
     <!-- Login and Sign Up Page Strings -->
     <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="email">Email</string>
     <string name="no_account">Don\'t have an account? Click here</string>
+    <string name="yes_account">Already have an account? Click here</string>
 </resources>
