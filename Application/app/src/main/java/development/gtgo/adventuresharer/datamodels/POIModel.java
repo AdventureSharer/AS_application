@@ -1,7 +1,5 @@
 package development.gtgo.adventuresharer.datamodels;
 
-import android.util.Log;
-
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.UUID;
@@ -13,9 +11,10 @@ public class POIModel {
     public String description;
     private LocationModel location;
 
-    public POIModel(){
-    }
+    // Empty constructor for FireBase
+    public POIModel(){}
 
+    // Default constructor
     public POIModel(String title, String desc, LocationModel loc) {
         this.poiID = UUID.randomUUID().toString();
         this.title = title;
@@ -34,9 +33,7 @@ public class POIModel {
         return poiID;
     }
     public LatLng getLocation() {
-        LatLng temp = new LatLng(location.getLat(), location.getLng());
-
-        return temp;
+        return new LatLng(location.getLat(), location.getLng());
     }
 
     // Setters

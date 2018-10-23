@@ -4,29 +4,24 @@ import android.net.Uri;
 
 public class POIImage {
 
-    public Uri imageUri;
-    public String poiID;
+    private Uri imageUri;
+    private String poiID;
 
+    // Empty constructor for FireBase
     public POIImage(){}
 
+    // Default constructor
     public POIImage(Uri imURI, String imID){
         this.imageUri = imURI;
         this.poiID = imID;
     }
 
+    // GETTERS
     public Uri getImageUri() {
         return imageUri;
     }
-
     public String getPoiID() {
         return poiID;
     }
 
-    public void setImageUri(Uri imageUri) {
-        this.imageUri = imageUri;
-    }
-
-    public void setPoiID(String poiID) {
-        this.poiID = poiID;
-    }
 }
