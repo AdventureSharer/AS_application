@@ -1,5 +1,9 @@
 package development.gtgo.adventuresharer.datamodels;
 
+/**
+ *  This class is used by FireBase to save locations
+ *  Future updates can include replacing this with a LatLng object or Location object
+ */
 public class LocationModel {
 
     private double lat, lng;

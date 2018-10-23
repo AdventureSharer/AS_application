@@ -2,6 +2,10 @@ package development.gtgo.adventuresharer.datamodels;
 
 import android.net.Uri;
 
+/**
+ *  This object it used to save and retrieve an image for the Points of Interests
+ *  it uses a unique ID to help save and retrieve it from FireBase storage
+ */
 public class POIImage {
 
     private Uri imageUri;

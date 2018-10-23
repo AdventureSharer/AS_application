@@ -4,6 +4,10 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.UUID;
 
+/**
+ * This model is used to save and retrieve Points of Interests.
+ * It saves a title, small description and location
+ */
 public class POIModel {
 
     private String poiID;
