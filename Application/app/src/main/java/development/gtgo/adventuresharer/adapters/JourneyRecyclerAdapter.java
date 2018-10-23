@@ -43,7 +43,7 @@ public class JourneyRecyclerAdapter extends RecyclerView.Adapter<JourneyRecycler
     /**
      *  Initialises the DataSet of the Adapter
      *
-     *  @param routes contains the data to populate tthe views to be used by the RecyclerView
+     *  @param routes contains the data to populate the views to be used by the RecyclerView
      */
     public JourneyRecyclerAdapter(List<HikingRoute> routes) {
         mRoutes = routes;

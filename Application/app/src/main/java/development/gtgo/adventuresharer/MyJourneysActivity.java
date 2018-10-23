@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,13 +31,11 @@ public class MyJourneysActivity extends AppCompatActivity implements RecyclerCli
     private static final String TAG = "MyRouteActivity";
 
     // FireBase Database
-    private DatabaseReference mRootRef;
     private DatabaseReference mHikingRef;
     private ValueEventListener mValueEventListener;
     private Query mQuery;
 
     // FireBase Auth
-    private FirebaseAuth mFirebaseAuth;
     private String userID;
 
     // RecyclerView Objects
@@ -54,18 +53,19 @@ public class MyJourneysActivity extends AppCompatActivity implements RecyclerCli
         setContentView(R.layout.activity_my_journeys);
 
         // FireBase Auth
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        userID = mFirebaseAuth.getCurrentUser().getUid();
+        FirebaseAuth mFireBaseAuth = FirebaseAuth.getInstance();
+        if(mFireBaseAuth.getCurrentUser() != null) {
+            userID = mFireBaseAuth.getCurrentUser().getUid();
+        }
 
         // FireBase Database
-        mRootRef = FirebaseDatabase.getInstance().getReference();
-        mHikingRef = mRootRef.child("HikingRoutes");
+        mHikingRef = FirebaseDatabase.getInstance().getReference().child("HikingRoutes");
 
         // Route List
         mRoutes = new ArrayList<>();
 
         // Links RecyclerView
-        recyclerView = findViewById(R.id.recyclerMyRoutes);
+        recyclerView = findViewById(R.id.recycler_my_routes);
         // Sets RecyclerView Layout
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -82,20 +82,24 @@ public class MyJourneysActivity extends AppCompatActivity implements RecyclerCli
     @Override
     protected void onResume() {
         super.onResume();
+        // attaches listener whenever the activity is in focus
         attachDatabaseReadListener();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        // detaches database whenever activity is out of focus
         detachDatabaseReadListener();
     }
 
     @Override
     public void onClick(View view, int position) {
 
+        // Locates what route has been selected
         String routeID = mRoutes.get(position).getRouteID();
 
+        // Opens MapActivity loaded it the entire route that has been selected
         Intent intent = new Intent(MyJourneysActivity.this, MapsActivity.class);
         intent.putExtra("routeID", routeID);
         setResult(Activity.RESULT_OK);
@@ -106,33 +110,36 @@ public class MyJourneysActivity extends AppCompatActivity implements RecyclerCli
 
     @Override
     public void onLongClick(View view, int position) {
-
+        // Planned for an option menu to appear on long press
+        Toast.makeText(getApplicationContext(), "Long pressed!", Toast.LENGTH_LONG).show();
     }
 
-    // Database listener retrieves offers from FireBase and sets data to RecyclerView recyclerAdapter
+    /**
+     *  The function attaches the database to the Activity so that it can listen for any change
+     *  or updates that can happen to the data that it is calling
+     */
     private void attachDatabaseReadListener() {
         mQuery = mHikingRef.orderByChild("userID").equalTo(userID);
 
         if(mValueEventListener == null) {
             mValueEventListener = new ValueEventListener() {
+
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Log.i(TAG, "onDataChange started");
+
                     if(dataSnapshot.exists()) {
                         recyclerAdapter.notifyDataSetChanged();
-                        Log.i(TAG, "onDataChange: data change detected");
+                        // Clears the old list of routes
                         mRoutes.clear();
+                        // Looks for the updated data
                         for(DataSnapshot routeSnapshot : dataSnapshot.getChildren()) {
                             HikingRoute route = routeSnapshot.getValue(HikingRoute.class);
-                            Log.i(TAG, "UserID: " + userID);
-                            Log.i(TAG, "Route UserID " + route.getUserID());
-
                             mRoutes.add(route);
-                            Log.i(TAG, "Adding route title: " + route.getName());
                         }
+                        // Adds the routes to the adapter to create the CardViews
                         recyclerAdapter.setRoutes(mRoutes);
                     } else {
-                        // Look into
+                        // Debugging
                         Log.i(TAG, "dataSnapshot doesn't exists");
                         recyclerAdapter.notifyDataSetChanged();
                     }
@@ -141,12 +148,17 @@ public class MyJourneysActivity extends AppCompatActivity implements RecyclerCli
                 public void onCancelled(@NonNull DatabaseError databaseError) { }
             };
         } else {
+            // Debugging
             Log.i(TAG, "mValueListener is not null");
         }
+        // Adds this entire listening process to the Query
         Log.i(TAG, "addValueEventListener added to mQuery");
         mQuery.addValueEventListener(mValueEventListener);
     }
 
+    /**
+     *  Detaches the database from the activity
+     */
     private void detachDatabaseReadListener() {
         if(mValueEventListener != null) {
             Log.i(TAG, "DETACHED");

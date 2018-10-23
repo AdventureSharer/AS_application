@@ -30,13 +30,11 @@ public class AllJourneysActivity extends AppCompatActivity implements RecyclerCl
     private static final String TAG = "AllJourneysActivity";
 
     // FireBase Database
-    private DatabaseReference mRootRef;
     private DatabaseReference mHikingRef;
     private ValueEventListener mValueEventListener;
     private Query mQuery;
 
     // FireBase Auth
-    private FirebaseAuth mFirebaseAuth;
     private String userID;
 
     // RecyclerView Objects
@@ -54,12 +52,13 @@ public class AllJourneysActivity extends AppCompatActivity implements RecyclerCl
         setContentView(R.layout.activity_all_journeys);
 
         // FireBase Auth
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        userID = mFirebaseAuth.getCurrentUser().getUid();
+        FirebaseAuth mFireBaseAuth = FirebaseAuth.getInstance();
+        if(mFireBaseAuth.getCurrentUser() != null) {
+            userID = mFireBaseAuth.getCurrentUser().getUid();
+        }
 
         // FireBase Database
-        mRootRef = FirebaseDatabase.getInstance().getReference();
-        mHikingRef = mRootRef.child("HikingRoutes");
+        mHikingRef = FirebaseDatabase.getInstance().getReference().child("HikingRoutes");
 
         // Route List
         mRoutes = new ArrayList<>();
@@ -82,12 +81,14 @@ public class AllJourneysActivity extends AppCompatActivity implements RecyclerCl
     @Override
     protected void onResume() {
         super.onResume();
+        // attaches listener whenever the activity is in focus
         attachDatabaseReadListener();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        // detaches database whenever activity is out of focus
         detachDatabaseReadListener();
     }
 
@@ -106,7 +107,7 @@ public class AllJourneysActivity extends AppCompatActivity implements RecyclerCl
 
     @Override
     public void onLongClick(View view, int position) {
-
+        // Planned for an option menu to appear on long press
     }
 
     // Database listener retrieves offers from FireBase and sets data to RecyclerView recyclerAdapter
@@ -125,14 +126,12 @@ public class AllJourneysActivity extends AppCompatActivity implements RecyclerCl
                         for(DataSnapshot routeSnapshot : dataSnapshot.getChildren()) {
                             HikingRoute route = routeSnapshot.getValue(HikingRoute.class);
                             Log.i(TAG, "UserID: " + userID);
-                            Log.i(TAG, "Route UserID " + route.getUserID());
 
                             mRoutes.add(route);
-                            Log.i(TAG, "Adding route title: " + route.getName());
                         }
                         recyclerAdapter.setRoutes(mRoutes);
                     } else {
-                        // Look into
+                        // Debugging
                         Log.i(TAG, "dataSnapshot doesn't exists");
                         recyclerAdapter.notifyDataSetChanged();
                     }
@@ -141,12 +140,17 @@ public class AllJourneysActivity extends AppCompatActivity implements RecyclerCl
                 public void onCancelled(@NonNull DatabaseError databaseError) { }
             };
         } else {
+            // Debugging
             Log.i(TAG, "mValueListener is not null");
         }
+        // Adds this entire listening process to the Query
         Log.i(TAG, "addValueEventListener added to mQuery");
         mQuery.addValueEventListener(mValueEventListener);
     }
 
+    /**
+     *  Detaches the database from the activity
+     */
     private void detachDatabaseReadListener() {
         if(mValueEventListener != null) {
             Log.i(TAG, "DETACHED");

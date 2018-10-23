@@ -2,7 +2,6 @@ package development.gtgo.adventuresharer.clicklisteners;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,31 +20,28 @@ public class RecyclerClickListener extends RecyclerView.SimpleOnItemTouchListene
     }
 
     private final OnRecyclerClickListener mListener;
-    private final GestureDetectorCompat mGestureDetecor;
+    private final GestureDetectorCompat mGestureDetector;
 
     public RecyclerClickListener(Context context, final RecyclerView recyclerView, OnRecyclerClickListener listener){
         mListener = listener;
-        mGestureDetecor = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener(){
+        mGestureDetector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener(){
 
-            // Single Tap
+            // Creates the click listener
             @Override
             public boolean onSingleTapUp(MotionEvent motionEvent) {
-
                 View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-
                 if(childView != null && mListener != null) {
                     mListener.onClick(childView, recyclerView.getChildAdapterPosition(childView));
                 }
                 return true;
             }
 
-            // Long Press
+            // Create the long press listener
             @Override
             public void onLongPress(MotionEvent motionEvent) {
                 View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-
                 if(childView != null && mListener != null) {
-                    mListener.onClick(childView, recyclerView.getChildAdapterPosition(childView));
+                    mListener.onLongClick(childView, recyclerView.getChildAdapterPosition(childView));
                 }
             }
         });
@@ -53,8 +49,8 @@ public class RecyclerClickListener extends RecyclerView.SimpleOnItemTouchListene
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-        if(mGestureDetecor != null) {
-            boolean result = mGestureDetecor.onTouchEvent(e);
+        if(mGestureDetector != null) {
+            boolean result = mGestureDetector.onTouchEvent(e);
             Log.d(TAG, "onInterceptTouchEvent: returned " + result );
             return result;
         } else {

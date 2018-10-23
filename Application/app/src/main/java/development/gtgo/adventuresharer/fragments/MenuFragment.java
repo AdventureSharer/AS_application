@@ -28,7 +28,7 @@ public class MenuFragment extends Fragment{
 
         view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        Button mapsButton = view.findViewById(R.id.button__new_route);
+        Button mapsButton = view.findViewById(R.id.button_new_route);
         Button myJourneysButton = view.findViewById(R.id.button_my_journeys);
         Button allJourneysButton = view.findViewById(R.id.button_all_journeys);
         Button websiteButton = view.findViewById(R.id.button_website);
